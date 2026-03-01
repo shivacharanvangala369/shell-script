@@ -20,7 +20,13 @@ VALIDATE(){
 }
 
 for package in $@
-do
-  dnf install $package -y &>>$LOG_FILE
-  VALIDATE $? "$package installation"
+do  
+  dnf list installed $package  &>>$LOG_FILE
+  if [ $? -ne 0 ];then
+    echo "$package is not installed on system, Installing Now"
+    dnf install $package -y &>>$LOG_FILE
+    VALIDATE $? "$package installation"
+  else
+    echo "$package is alraedy installed on system"
+  fi
 done
