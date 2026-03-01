@@ -21,6 +21,6 @@ VALIDATE(){
 
 for package in $@
 do
-  dns install $package -y &>> LOG_FILE
+  dns install $package -y &>>LOG_FILE
   VALIDATE $? "$package installation"
 done
