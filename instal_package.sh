@@ -1,10 +1,10 @@
 #!bin/bash
 
-USER=$(id -u)
+USERID=$(id -u)
 LOG_FOLDER="/var/log/install_packages"
 LOG_FILE="/var/log/install_packages/$0.log"
 
-if [$userid -ne 0]; then
+if [$usUSERID -ne 0]; then
      echo " please run this script using root user" | tee -a $LOG_FILE
      exit 1
 if
