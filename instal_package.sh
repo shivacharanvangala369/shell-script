@@ -4,15 +4,15 @@ USERID=$(id -u)
 LOG_FOLDER="/var/log/install_packages"
 LOG_FILE="/var/log/install_packages/$0.log"
 
-if [$usUSERID -ne 0]; then
+if [ $USERID -ne 0 ]; then
      echo " please run this script using root user" | tee -a $LOG_FILE
      exit 1
-if
+fi
 
 mkdir -p $LOG_FOLDER
 
 VALIDATE(){
-    if [$1 -ne 0]; then
+    if [ $1 -ne 0 ]; then
         echo "$2... FAILURE" | tee -a $LOG_FILE
     else
         echo "$2... SUCCESS" | tee -a $LOG_FILE
