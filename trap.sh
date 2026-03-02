@@ -18,16 +18,14 @@ fi
 
 mkdir -p $LOG_FOLDER
 
-
-
 for package in $@
 do  
-  dnf list installed $package  &>>$LOG_FILE
-  if [ $? -ne 0 ];then
-    echo -e "$package  $Y is not installed on system, Installing Now"
-    dnf install $package -y &>>$LOG_FILE
-      $? "$package  installation"
-  else
-    echo -e " $package $Y is alraedy installed on system $N "
-  fi
+    dnf list installed $package  &>>$LOG_FILE
+    if [ $? -ne 0 ]; then
+        echo -e "$package  $Y is not installed on system, Installing Now"
+        dnf install $package -y &>>$LOG_FILE
+        $? "$package  installation"
+    else
+        echo -e " $package $Y is alraedy installed on system $N "
+    fi
 done
