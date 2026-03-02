@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 trap 'echo "There is an error in $LINENO, Command: $BASH_COMMAND"' ERR
+
 USERID=$(id -u)
 LOG_FOLDER="/var/log/install_packages"
 LOG_FILE="/var/log/install_packages/$0.log"
