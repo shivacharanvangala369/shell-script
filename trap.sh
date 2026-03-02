@@ -25,7 +25,6 @@ do
     if [ $? -ne 0 ]; then
         echo -e "$package  $Y is not installed on system, Installing Now"
         dnf install $package -y &>>$LOG_FILE
-        $? "$package  installation"
     else
         echo -e " $package $Y is alraedy installed on system $N "
     fi
