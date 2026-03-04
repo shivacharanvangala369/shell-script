@@ -15,4 +15,4 @@ while IFS=read -r filepath; do
     echo -e "deleteing files: $filepath"
     rm -f $filepath
     echo -e "deleted files: $filepath"
-done >>>$FILE_TO_DELETE
+done <<< $FILE_TO_DELETE
