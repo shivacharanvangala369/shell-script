@@ -1,4 +1,8 @@
 #!/bin/bash
+R="\e[31m"
+G="\e[32m"
+Y="\e[33m"
+N="\e[34m"
 
 LOG_DIR=/home/ec2-user/app-logs
 LOG_FILE="$LOG_DIR/$0.log"
