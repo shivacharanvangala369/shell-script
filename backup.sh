@@ -22,6 +22,10 @@ USAGE(){
 }
 
 
+log(){
+    echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1" | tee -a $LOG_FILE
+}
+
 if [ $# -lt 2 ]; then 
     USAGE
 fi
@@ -35,6 +39,14 @@ if [ ! -d $DEST_DIR ]; then
      echo -e "$R destintion dir $DEST_DIR does not exitst  $N"
      exit 1
 fi 
+
+
+FILES=$(find $SOURCE_DIR ".log" type -f -mtime  +$DAYS)
+
+log "backup started"
+log " SOURCE DIR: $SOURCE_DIR"
+log " DEST DIR: $DEST_DIR"
+log " NO.OF DAYS : $DAYS"
 
 
 
