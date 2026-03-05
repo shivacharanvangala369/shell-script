@@ -48,5 +48,9 @@ log " SOURCE DIR: $SOURCE_DIR"
 log " DEST DIR: $DEST_DIR"
 log " NO.OF DAYS : $DAYS"
 
+if [ -z $FILES]; then
+    log "NO FILES TO ARECHIVE.... $Y SKIPPING $N"
+fi
+
 
 
