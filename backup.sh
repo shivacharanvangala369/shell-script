@@ -44,16 +44,16 @@ fi
 FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime  +$DAYS)
 
 log "backup started"
-log " SOURCE DIR: $SOURCE_DIR"
-log " DEST DIR: $DEST_DIR"
-log " NO.OF DAYS : $DAYS"
+log "SOURCE DIR: $SOURCE_DIR"
+log "DEST DIR: $DEST_DIR"
+log "NO.OF DAYS : $DAYS"
 
 if [ -z "${FILES}" ]; then
     log "NO FILES TO ARECHIVE.... $Y SKIPPING $N"
 else
    log "FILES FOUND TO ARECHIVE: $FILES "
    TIMESTAMP=$(date +%F-%h-%M-%S)
-   ZIP_FILE_NAME="$DEST_DIR/app-logs.$TIMESTAMP.zip"
+   ZIP_FILE_NAME="$DEST_DIR/app-logs.$TIMESTAMP.tar.gz"
    log "ARchive name: $ZIP_FILE_NAME"
    tar -zcvf  $FILES  $ZIP_FILE_NAME
 
