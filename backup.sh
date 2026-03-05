@@ -6,8 +6,9 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[34m"
-SCRIPT_DIR=$PWD
-MONGODB_HOST=mongodb.devcops.online
+SOURCE_DIR=$1
+DEST_DIR=$2
+DAYS=${3:-14} # default is 3 if not value is not given.
 
 if [ $USERID -ne 0 ]; then
      echo -e "$R please run this script using root user $N"  
@@ -24,3 +25,16 @@ USAGE(){
 if [ $# -lt 2 ]; then 
     USAGE
 fi
+
+if [ ! -d $SOURCE_DIR ]
+     echo -e "$R $SOURCE_DIR does not exitst  $N"
+     exit 1
+fi 
+
+if [ ! -d $DEST_DIR ]
+     echo -e "$R $DEST_DIR does not exitst  $N"
+     exit 1
+fi 
+
+
+
