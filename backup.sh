@@ -8,10 +8,10 @@ Y="\e[33m"
 N="\e[34m"
 SOURCE_DIR=$1
 DEST_DIR=$2
-DAYS=${3:-14} # default is 3 if not value is not given.
+DAYS=${3:-14} # default is 14 if not value is not given.
 
 if [ $USERID -ne 0 ]; then
-     log -e "$R please run this script using root user $N"  
+      echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1" | tee -a $LOG_FILE  
 fi
 
 mkdir -p $LOG_FOLDER
@@ -31,12 +31,12 @@ if [ $# -lt 2 ]; then
 fi
 
 if [ ! -d $SOURCE_DIR ]; then
-     log -e "$R source dir $SOURCE_DIR does not exitst  $N"
+     echo  -e "$R source dir $SOURCE_DIR does not exitst  $N"
      exit 1
 fi 
 
 if [ ! -d $DEST_DIR ]; then
-     log -e "$R destintion dir $DEST_DIR does not exitst  $N"
+     echo  -e "$R destintion dir $DEST_DIR does not exitst  $N"
      exit 1
 fi 
 
@@ -52,10 +52,10 @@ if [ -z "${FILES}" ]; then
     log "NO FILES TO ARECHIVE.... $Y SKIPPING $N"
 else
    log "FILES FOUND TO ARECHIVE: $FILES "
-   TIMESTAMP=$(date +%F-%h-%M-%S)
+   TIMESTAMP=$(date +%F-%H-%M-%S)
    ZIP_FILE_NAME="$DEST_DIR/app-logs.$TIMESTAMP.tar.gz"
    log "ARchive name: $ZIP_FILE_NAME"
-   tar -zcvf  $FILES  $ZIP_FILE_NAME
+   tar -zcvf $ZIP_FILE_NAME $FILES
 
 
    # CHECK ARECHIVE IS SUCESS OR NOT
@@ -63,9 +63,9 @@ else
         log "arechival is.... $G SUCCESS $N"
 
         while IFS= read -r filepath; do
-        log "DELETEING FILES: $FILES"
+        log "Deleting file: $filepath"
         rm -f $filepath
-        log "DELETED FILES: $FILES"
+        log "Deleted file: $filepath"
         done <<< $FILES
 
    else
