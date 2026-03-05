@@ -9,7 +9,7 @@ N="\e[34m"
 SCRIPT_DIR=$PWD
 MONGODB_HOST=mongodb.devcops.online
 
-if [ $cartID -ne 0 ]; then
+if [ $USERID -ne 0 ]; then
      echo -e "$R please run this script using root user $N"  
 fi
 
