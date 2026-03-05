@@ -1,0 +1,3 @@
+* * * * * sudo sh  /home/ec2-user/shell-script/create_log_files.sh
+* * * * * sudo sh /home/ec2-user/shell-script/backup_auto.sh
+~                                                             
