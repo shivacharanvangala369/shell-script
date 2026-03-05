@@ -10,8 +10,14 @@ SOURCE_DIR=$1
 DEST_DIR=$2
 DAYS=${3:-14} # default is 14 if not value is not given.
 
+log(){
+    echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1" | tee -a $LOG_FILE
+}
+
+
 if [ $USERID -ne 0 ]; then
-      echo -e "$(date "+%Y-%m-%d %H:%M:%S") | $1" | tee -a $LOG_FILE  
+      echo -e "$R Please run this script with root user access $N"
+      exit 1
 fi
 
 mkdir -p $LOG_FOLDER
@@ -22,25 +28,21 @@ USAGE(){
 }
 
 
-log(){
-    log -e "$(date "+%Y-%m-%d %H:%M:%S") | $1" | tee -a $LOG_FILE
-}
-
 if [ $# -lt 2 ]; then 
     USAGE
 fi
 
-if [ ! -d $SOURCE_DIR ]; then
-     echo  -e "$R source dir $SOURCE_DIR does not exitst  $N"
-     exit 1
-fi 
+if [ ! -d "$SOURCE_DIR" ]; then
+    log "$R Source Directory: $SOURCE_DIR does not exist $N"
+    exit 1
+fi
 
-if [ ! -d $DEST_DIR ]; then
-     echo  -e "$R destintion dir $DEST_DIR does not exitst  $N"
-     exit 1
-fi 
+if [ ! -d "$DEST_DIR" ]; then
+    log "$R Destination Directory:  $DEST_DIR does not exist $N"
+    exit 1
+fi
 
-
+### Find the files
 FILES=$(find $SOURCE_DIR -name "*.log" -type f -mtime  +$DAYS)
 
 log "backup started"
